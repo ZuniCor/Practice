@@ -110,7 +110,7 @@ class Solution
 
             SinglyLinkedList llist = new SinglyLinkedList();
 
-            int llistCount = tests;
+            int llistCount = args.Length;
 
             for (int i = 0; i < llistCount; i++)
             {
