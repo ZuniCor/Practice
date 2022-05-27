@@ -1,0 +1,5 @@
+/workspaces/Practice/bin/Release/net6.0/publish/Practice
+/workspaces/Practice/bin/Release/net6.0/publish/Practice.dll
+/workspaces/Practice/bin/Release/net6.0/publish/Practice.deps.json
+/workspaces/Practice/bin/Release/net6.0/publish/Practice.runtimeconfig.json
+/workspaces/Practice/bin/Release/net6.0/publish/Practice.pdb
