@@ -14,7 +14,6 @@ using System;
 
 class Solution
 {
-
     class SinglyLinkedListNode
     {
         public int data;
@@ -31,7 +30,6 @@ class Solution
     {
         public SinglyLinkedListNode head;
         public SinglyLinkedListNode tail;
-
         public SinglyLinkedList()
         {
             this.head = null;
@@ -83,7 +81,23 @@ class Solution
      */
     static bool hasCycle(SinglyLinkedListNode head)
     {
+        var tracker = new Dictionary<SinglyLinkedListNode, List<int>>();
+        do 
+        {
+            if (!tracker.ContainsKey(head.next))
+                tracker.Add(head.next, new List<int> { head.data });
+            else
+                tracker[head.next].Add(head.data);
 
+        } while (head.next != null);
+
+        foreach (var item in tracker)
+        {
+            if (item.Value.Count > 1)
+                return true;
+        }
+
+        return false;
     }
 
     static void Main(string[] args)
