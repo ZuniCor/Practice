@@ -81,26 +81,22 @@ class Solution
      */
     static bool hasCycle(SinglyLinkedListNode head)
     {
-        var tracker = new Dictionary<SinglyLinkedListNode, List<int>>();
+        if (head == null)
+            return false;
 
-        SinglyLinkedListNode? node = null;
+        SinglyLinkedListNode slow = head.next;
+        SinglyLinkedListNode fast = head.next.next;
 
-        do 
+        while (slow != null && fast != null)
         {
-            if (!tracker.ContainsKey(head.next))
-                tracker.Add(head.next, new List<int> { head.data });
-            else
-                tracker[head.next].Add(head.data);
+            slow = slow.next;
+            fast = fast.next.next;
 
-            node.next = head.next.next;
-
-        } while (node != null);
-
-        foreach (var item in tracker)
-        {
-            if (item.Value.Count > 1)
+            if (slow == fast)
                 return true;
         }
+
+
 
         return false;
     }
