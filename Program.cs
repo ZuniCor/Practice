@@ -103,7 +103,7 @@ class Solution
 
     static void Main(string[] args)
     {
-        int tests = 1;
+        int tests = 0;
 
         for (int testsItr = 0; testsItr < tests; testsItr++)
         {
