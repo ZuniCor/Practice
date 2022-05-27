@@ -102,21 +102,19 @@ class Solution
 
     static void Main(string[] args)
     {
-        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
-
-        int tests = Convert.ToInt32(Console.ReadLine());
+        int tests = 1;
 
         for (int testsItr = 0; testsItr < tests; testsItr++)
         {
-            int index = Convert.ToInt32(Console.ReadLine());
+            int index = Convert.ToInt32(args[testsItr]);
 
             SinglyLinkedList llist = new SinglyLinkedList();
 
-            int llistCount = Convert.ToInt32(Console.ReadLine());
+            int llistCount = tests;
 
             for (int i = 0; i < llistCount; i++)
             {
-                int llistItem = Convert.ToInt32(Console.ReadLine());
+                int llistItem = Convert.ToInt32(args[i]);
                 llist.InsertNode(llistItem);
             }
 
@@ -126,24 +124,14 @@ class Solution
             for (int i = 0; i < llistCount; i++)
             {
                 if (i == index)
-                {
                     extra = temp;
-                }
 
                 if (i != llistCount - 1)
-                {
                     temp = temp.next;
-                }
             }
-
             temp.next = extra;
-
             bool result = hasCycle(llist.head);
-
-            textWriter.WriteLine((result ? 1 : 0));
+            Console.WriteLine((result ? 1 : 0));
         }
-
-        textWriter.Flush();
-        textWriter.Close();
     }
 }
