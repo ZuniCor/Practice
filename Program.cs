@@ -12,10 +12,30 @@
 
     public static long arrayManipulation(int n, List<List<int>> queries)
     {
-      long ret = 1000;
-      return ret;
-    }
+        long ret = 0;
+        int d = queries.Count();
+        int[,] arr = new int[d, n];
 
+        // Initialize with all zeros, not sure if there a built-in method to handle this:
+        for (int i = 0; i < d; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                arr[i,j] = 0;
+            }
+        }
+
+        // Implement Algorithm Here:
+        for (int i = 0; i < d; i++)
+        {
+            var row = queries[i][0];
+            var column = queries[i][1];
+            var k = queries[i][2];
+            // Inner indexeing:
+
+        }
+        return ret;
+    }
 }
 
 class Solution
@@ -23,7 +43,7 @@ class Solution
     public static void Main(string[] args)
     {
         string[] firstMultipleInput = args[0].Split(' ');
-     
+
         int n = Convert.ToInt32(firstMultipleInput[0]);
 
         int m = Convert.ToInt32(firstMultipleInput[1]) + 1;
@@ -38,7 +58,7 @@ class Solution
             .ToList()
             .Select(queriesTemp => Convert.ToInt32(queriesTemp))
             .ToList());
-        }   
+        }
 
         long result = Result.arrayManipulation(n, queries);
         Console.WriteLine(result.ToString());
