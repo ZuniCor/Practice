@@ -14,32 +14,36 @@
     {
         long ret = 0;
         int d = queries.Count();
-        int[,] arr = new int[d, n];
+        int[] arr = new int[n];
+        var possibleResults = new List<int>();
 
         // Initialize with all zeros, not sure if there a built-in method to handle this:
         for (int i = 0; i < d; i++)
         {
-            for (int j = 0; j < n; j++)
-            {
-                arr[i,j] = 0;
-            }
+            arr[i] = 0;
         }
 
+        //  5 3
+        //  1 2 100
+        //  2 5 100
+        //  3 4 100
+
         // Implement Algorithm Here:
-        for (int i = 0; i < d; i++)
+        foreach (var q in queries)
         {
-            var row = queries[i][0];
-            var depth = queries[i][1] - 1;
-            var k = queries[i][2];
-            // Inner indexeing:
-            for (int l = row; l <= depth; l++)
+            var left = q[0];
+            var right = q[1];
+            var k = q[2];
+
+            for (int j = left - 1; j <= (right - 1); j++)
             {
-                for (int q = row; q < d; q++)
-                {
-                    arr[q, l] += k;
-                }
+                arr[j] += k;
             }
+
+            possibleResults.Add(arr.Max());
         }
+
+        ret = possibleResults.Max();
         return ret;
     }
 }
