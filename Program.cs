@@ -28,13 +28,16 @@
         // Implement Algorithm Here:
         for (int i = 0; i < d; i++)
         {
-            var row = queries[i][0] - 1;
+            var row = queries[i][0];
             var depth = queries[i][1] - 1;
             var k = queries[i][2];
             // Inner indexeing:
             for (int l = row; l <= depth; l++)
             {
-                arr[row, l] += k;
+                for (int q = row; q < d; q++)
+                {
+                    arr[q, l] += k;
+                }
             }
         }
         return ret;
