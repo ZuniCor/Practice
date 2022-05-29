@@ -47,26 +47,31 @@
         for (int i = 1; i < queries.Count(); i++)
         {
             // Trailing row:
-            var pLeft = queries[i - 1][0] - 1;
-            var pRight = queries[i- 1][1] - 1;
+            var pLeft = queries[i - 1][0];
+            var pRight = queries[i- 1][1];
             var prevK = queries[i - 1][2];
 
             // Current row;
-            var left = queries[i][0] - 1;
-            var right = queries[i][1] - 1;
+            var left = queries[i][0];
+            var right = queries[i][1];
             var k = queries[i][2];
+
+            var prevSequence = Enumerable.Range(pLeft, Math.Abs(pRight - pLeft));
+            var sequence = Enumerable.Range(left, Math.Abs(right - left));
 
             // Need to find a way to tell if 
             // indices overlap:
-            bool lowerBoundOverlap = false;
-            bool upperBoundOverlap = false;
+            bool sequencesOverlap = false;
+            var both = prevSequence.Intersect(sequence);
 
-            if (pLeft < left)
-                lowerBoundOverlap = true;
-            if (pRight >= right)
-                upperBoundOverlap = true;
+            if (both.Any()) 
+                sequencesOverlap = true;
 
-            if (upperBoundOverlap && lowerBoundOverlap)
+            both = sequence.Intersect(prevSequence);
+            if (both.Any())
+                sequencesOverlap = true;
+
+            if (sequencesOverlap)
             {
                 var res = k;
                 k += prevK;
