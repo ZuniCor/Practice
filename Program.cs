@@ -28,8 +28,8 @@
         //  2 5 100
         //  3 4 100
 
-        // Implement Algorithm Here:
-        foreach (var q in queries)
+        // Implement Algorithm Here: (this one is too slow for their liking)
+        /*foreach (var q in queries)
         {
             var left = q[0];
             var right = q[1];
@@ -41,6 +41,38 @@
             }
 
             possibleResults.Add(arr.Max());
+        }*/
+
+
+        for (int i = 1; i < queries.Count(); i++)
+        {
+            // Trailing row:
+            var pLeft = queries[i - 1][0] - 1;
+            var pRight = queries[i- 1][1] - 1;
+            var prevK = queries[i - 1][2];
+
+            // Current row;
+            var left = queries[i][0] - 1;
+            var right = queries[i][1] - 1;
+            var k = queries[i][2];
+
+            // Need to find a way to tell if 
+            // indices overlap:
+            bool lowerBoundOverlap = false;
+            bool upperBoundOverlap = false;
+
+            if (pLeft < left)
+                lowerBoundOverlap = true;
+            if (pRight >= right)
+                upperBoundOverlap = true;
+
+            if (upperBoundOverlap && lowerBoundOverlap)
+            {
+                var res = k;
+                k += prevK;
+                possibleResults.Add(k);
+            }
+                
         }
 
         ret = possibleResults.Max();
